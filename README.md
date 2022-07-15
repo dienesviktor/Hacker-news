@@ -15,7 +15,7 @@ Aggregators reduce the time and effort needed to regularly check websites for up
 2. The webpage follows a generic MVC design.
 3. The opening page of the website loads the first thirty top news articles from hacker news.
 4. There is a menu at the top of the page with the following elements: Hackson news  (`/api/news`) , Top news  (`/api/top`), Newest (`/api/newest`), Jobs  (`/api/jobs`).
-5. Navigate on the site, refreshes the inner content of the page with the top news without reloading the page. 
+5. Navigate through the site, refreshes the inner content of the page without reloading the page. 
 
 ### Instruction:
 
