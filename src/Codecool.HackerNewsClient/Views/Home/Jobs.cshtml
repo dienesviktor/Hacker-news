@@ -1,0 +1,29 @@
+﻿@model APIModel
+@{
+    ViewData["Title"] = "Jobs";
+    List<APIModel> jobs = (List<APIModel>)ViewData["jobs"];
+    int page = jobs.Select(job => job.Page).First();
+    int next = page == 1 ? page : page + 1;
+    int prev = page == 1 ? page : page - 1;
+}
+
+<div class="jumbotron">
+    <h1>Best Jobs</h1>
+
+    <div>
+        <a asp-controller="Home" asp-action="Jobs" asp-route-id="@prev">Previous</a> |
+        <a asp-controller="Home" asp-action="Jobs" asp-route-id="@next">Next</a>
+    </div>
+
+    <div class="row">
+        @foreach (var job in jobs)
+        {
+            <div class="col-md-4">
+                <a href="@job.Url" target="_blank">
+                    <h2>@job.Title</h2>
+                </a>
+                <p>@job.TimeAgo</p>
+            </div>
+        }
+    </div>
+</div>

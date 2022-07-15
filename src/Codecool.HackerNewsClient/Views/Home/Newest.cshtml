@@ -1,0 +1,31 @@
+﻿@model APIModel
+@{
+    ViewData["Title"] = "Newest";
+    List<APIModel> news = (List<APIModel>)ViewData["news"];
+    int page = news.Select(oneNews => oneNews.Page).First();
+    int next = page == 10 ? page : page + 1;
+    int prev = page == 1 ? page : page - 1;
+}
+
+<div class="jumbotron">
+    <h1>Newest Articles</h1>
+
+    <div>
+        <a asp-controller="Home" asp-action="Newest" asp-route-id="@prev">Previous</a> |
+        <a asp-controller="Home" asp-action="Newest" asp-route-id="@next">Next</a>
+    </div>
+
+    <div class="row">
+        @foreach (var oneNews in news)
+        {
+            string author = @oneNews.Author != string.Empty ? @oneNews.Author : "No Author";
+            <div class="col-md-4">
+                <a href="@oneNews.Url" target="_blank">
+                    <h2>@oneNews.Title</h2>
+                </a>
+                Author: <em>@author</em>
+                <p>@oneNews.TimeAgo</p>
+            </div>
+        }
+    </div>
+</div>
